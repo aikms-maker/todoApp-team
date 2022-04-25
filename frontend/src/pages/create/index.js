@@ -25,19 +25,9 @@ export const Create = () => {
 
   const addTodos = async (title) => {
     console.log(title);
-    await axios
-      .post(
-        `/addtodo?title=${title}`,
-        { title: title },
-        {
-          headers: {
-            accept: "application/json",
-          },
-        }
-      )
-      .then((res) => {
-        console.log(res.data);
-      });
+    await axios.post(`/addtodo`, { title: title }).then((res) => {
+      console.log(res.data);
+    });
   };
 
   const onClickAdd = () => {

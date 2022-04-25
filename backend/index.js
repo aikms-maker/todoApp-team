@@ -3,6 +3,9 @@ const app = express();
 const port = process.env.PORT || 3001;
 const mysql = require("mysql2/promise");
 
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
 app.get("/", (req, res) => {
   res.send("Hello TEST nodemon package.json test!");
 });
@@ -28,9 +31,12 @@ app.get("/gettodo", async (req, res) => {
 
 app.post("/addtodo", (req, res) => {
   try {
-    console.log(req.query);
-    console.log(req.params);
+    console.log("add todo api");
     console.log(req.body);
+    res.send({
+      message: "ok response",
+      reqParam: req.body.title,
+    });
   } catch (err) {
     console.log(err);
     res.send({ error: err });
